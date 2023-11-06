@@ -1,5 +1,5 @@
 # NanoGPT-Loss-Stop-Analysis
-using various loss functions and early stopping techniques to improve nanoGPT performance. Uses GPT2
+GPT-2 is an OpenAI developped model using transformers aimed at NLP tasks. The repository will use the NanoGPT implementation, on the openwebtext-10k dataset and analyze how a variety of different loss functions and early stopping techniques can improve the performance of the model.
 
 ## install
 
@@ -37,4 +37,9 @@ Change the batch_size as necessary to avoid CUDA memory errors:
 ```
 python3 train.python3 train.py --compile=False --batch_size=6
 ```
+
+## Evaluation
+
+The output of training the model will show the train and val loss, for each iteration.
+TODO: Add better way to visualize losses, for various loss functions and early stopping methods
 
