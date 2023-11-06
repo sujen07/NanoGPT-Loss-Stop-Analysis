@@ -41,5 +41,8 @@ python3 train.python3 train.py --compile=False --batch_size=6
 ## Evaluation
 
 The output of training the model will show the train and val loss, for each iteration.
-TODO: Add better way to visualize losses, for various loss functions and early stopping methods
+
+
+#TODO: 
+Add better way to visualize losses, for various loss functions and early stopping methods
 
