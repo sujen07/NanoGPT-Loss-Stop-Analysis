@@ -85,7 +85,7 @@ batch_size = 4    # adjust based on your GPU's memory
 
 # Load model from checkpoint
 # ... (use your existing model loading code here) ...
-ckpt_path = os.path.join(out_dir, 'ckpt.pt')
+ckpt_path = os.path.join(out_dir, 'ckpt_mse_loss.pt')
 checkpoint = torch.load(ckpt_path, map_location=device)
 gptconf = GPTConfig(**checkpoint['model_args'])
 model = GPT(gptconf)
