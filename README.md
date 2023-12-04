@@ -20,11 +20,11 @@ Dependencies:
 
 ## Prepare
 
-The model uses openwebtext-10k data set from huggingface,
-[dataset](https://huggingface.co/datasets/stas/openwebtext-10k)
+The model uses Tiny Stories data set from huggingface,
+[dataset](https://huggingface.co/datasets/roneneldan/TinyStories)
 to prepare the data into train.bin and val.bin for training:
 ```
-python3 data/openwebtext/prepare.py
+python3 data/TinyStories/prepare.py
 ```
 
 ## Training
@@ -69,14 +69,14 @@ The output of training the model will show the train and val loss, for each iter
 
 To get the perplexity of the model trained run:
 ```
-python test_perplexity.py --loss_func="mse"
+python3 test_perplexity.py --loss_func="mse"
 ```
 
 ## Sampling Text
 
 To sample text from the model after training it:
 ```
-python sample.py --start="Once upon a time," --num_samples=5 --max_new_tokens=100
+python3 sample.py --start="Once upon a time," --num_samples=5 --max_new_tokens=100
 ```
 
 To sample from a model that was trained using mse loss, use --loss_func="mse" on the command above
