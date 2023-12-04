@@ -117,11 +117,12 @@ class GPTConfig:
 
 class GPT(nn.Module):
 
-    def __init__(self, config):
+    def __init__(self, config, loss_func):
         super().__init__()
         assert config.vocab_size is not None
         assert config.block_size is not None
         self.config = config
+        self.loss = loss_func
 
         self.transformer = nn.ModuleDict(dict(
             wte = nn.Embedding(config.vocab_size, config.n_embd),
@@ -187,7 +188,12 @@ class GPT(nn.Module):
             probabilities = F.softmax(logits, dim=-1) * 100
             targets_expanded = F.one_hot(targets.to(torch.int64), num_classes=self.config.vocab_size).to(torch.float32) * 100
            
-            loss = F.mse_loss(targets_expanded, probabilities)
+            mse_loss = F.mse_loss(targets_expanded, probabilities)
+            cross_entropy_loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
+            if self.loss == 'mse':
+                loss = mse_loss
+            else:
+                loss = cross_entropy_loss
         else:
             # inference-time mini-optimization: only forward the lm_head on the very last position
             logits = self.lm_head(x[:, [-1], :]) # note: using list [-1] to preserve the time dim

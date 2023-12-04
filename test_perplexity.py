@@ -17,7 +17,8 @@ from model import GPTConfig, GPT
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
 out_dir = 'out' # ignored if init_from is not 'resume'
 start = "\n" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
-dataset='openwebtext'
+dataset='TinyStories'
+loss_func = 'cross_entropy'
 temperature = 0.8 # 1.0 = no change, < 1.0 = less random, > 1.0 = more random, in predictions
 top_k = 200 # retain only the top_k most likely tokens, clamp others to have 0 probability
 seed = 1337
@@ -26,6 +27,10 @@ dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported
 compile = False # use PyTorch 2.0 to compile the model to be faster
 exec(open('configurator.py').read()) # overrides from command line or config file
 # -----------------------------------------------------------------------------
+ckpt_name = 'ckpt.pt'
+if loss_func == 'mse':
+    ckpt_name = 'ckpt_mse_loss.pt'
+
 
 torch.manual_seed(seed)
 torch.cuda.manual_seed(seed)
@@ -85,10 +90,10 @@ batch_size = 4    # adjust based on your GPU's memory
 
 # Load model from checkpoint
 # ... (use your existing model loading code here) ...
-ckpt_path = os.path.join(out_dir, 'ckpt_mse_loss.pt')
+ckpt_path = os.path.join(out_dir, ckpt_name)
 checkpoint = torch.load(ckpt_path, map_location=device)
 gptconf = GPTConfig(**checkpoint['model_args'])
-model = GPT(gptconf)
+model = GPT(gptconf, loss_func)
 state_dict = checkpoint['model']
 unwanted_prefix = '_orig_mod.'
 for k,v in list(state_dict.items()):
@@ -99,7 +104,7 @@ model.load_state_dict(state_dict)
 # Calculate Perplexity
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
-num_batches = 200  # You can adjust this to the number of batches you want to use for calculation
+num_batches = 50  # You can adjust this to the number of batches you want to use for calculation
 perplexity = calculate_perplexity(model, device, num_batches)
 print(f"Validation Perplexity: {perplexity}")
 
