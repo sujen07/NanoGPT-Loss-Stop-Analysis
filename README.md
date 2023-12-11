@@ -55,10 +55,10 @@ $ torchrun --nproc_per_node=8 --nnodes=2 --node_rank=1 --master_addr=123.456.123
 
 All Command Line arguments:
 ```
-----compile=False
+---compile=False
 --batch_size=6
 --eval_interval=50 # Number of steps before evaluating the model's performance on validation data
--- init_from='scratch' # whether or not to "resume" training from previous checkpoint of model
+--init_from='resume' # whether or not to "resume" training from previous checkpoint of model
 ```
 
 To train with MSE loss function, use --loss_func="mse" command above.
