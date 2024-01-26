@@ -17,7 +17,7 @@ from model import GPTConfig, GPT
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
 out_dir = 'out' # ignored if init_from is not 'resume'
 start = "\n" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
-dataset='TinyStories'
+dataset='shakespeare'
 loss_func = 'cross_entropy'
 temperature = 0.8 # 1.0 = no change, < 1.0 = less random, > 1.0 = more random, in predictions
 top_k = 200 # retain only the top_k most likely tokens, clamp others to have 0 probability
@@ -43,6 +43,7 @@ ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=
 # Load the validation data
 data_dir = os.path.join('data', dataset)
 val_data = np.memmap(os.path.join(data_dir, 'val.bin'), dtype=np.uint16, mode='r')
+print(data_dir)
 
 # Batch generation function for the validation set
 def get_val_batch():
@@ -85,7 +86,7 @@ def calculate_perplexity(model, device, num_batches):
     perplexity = np.exp(average_loss)
     return perplexity
 # Configuration
-block_size = 1024  # adjust to match model's expected input size
+block_size = 256  # adjust to match model's expected input size
 batch_size = 4    # adjust based on your GPU's memory
 
 # Load model from checkpoint
@@ -104,7 +105,7 @@ model.load_state_dict(state_dict)
 # Calculate Perplexity
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
-num_batches = 50  # You can adjust this to the number of batches you want to use for calculation
+num_batches = 10  # You can adjust this to the number of batches you want to use for calculation
 perplexity = calculate_perplexity(model, device, num_batches)
 print(f"Validation Perplexity: {perplexity}")
 
