@@ -193,13 +193,13 @@ class GPT(nn.Module):
         if targets is not None:
             # if we are given some desired targets also calculate the loss
             logits = self.lm_head(x)
-            probabilities = F.softmax(logits, dim=-1)
+            #probabilities = F.softmax(logits, dim=-1)
             targets_expanded = F.one_hot(targets.to(torch.int64), num_classes=self.config.vocab_size).to(torch.float32)
             #print(probabilities)
             #print(targets.shape)
             
            
-            mse_loss_value = mse_loss(targets_expanded, probabilities)
+            mse_loss_value = mse_loss(targets_expanded, logits)
             #print(mse_loss)
             cross_entropy_loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
             if self.loss == 'mse':
