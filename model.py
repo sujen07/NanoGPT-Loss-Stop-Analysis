@@ -15,13 +15,40 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-def mse_loss(targets_expanded, logits):
-    squared_error = (targets_expanded - logits)**2
-    targets = targets_expanded == 1
-    squared_error = torch.where(targets, squared_error *100, squared_error)
-    mse_loss = torch.mean(squared_error)
-    return mse_loss
+# def mse_loss(targets_expanded, logits):
+#     squared_error = (targets_expanded - logits)**2
+#     targets = targets_expanded == 1
+#     squared_error = torch.where(targets, squared_error *100, squared_error)
+#     mse_loss = torch.mean(squared_error)
+#     return mse_loss
+import torch
+
+def mse_loss(targets_expanded, logits, beta=100, margin=0.1):
+    """
+    A modified MSE loss function that works directly with logits and does not use softmax.
     
+    - targets_expanded: One-hot encoded targets
+    - logits: Raw logits from the model
+    - beta: Scaling factor for penalizing errors on the correct class
+    - margin: A threshold used to determine underconfident predictions
+    """
+    # Calculate squared error directly from logits
+    squared_error = (targets_expanded - logits) ** 2
+    
+    # Calculate the "confidence" from logits as their absolute value (proxy for confidence without softmax)
+    logits_confidence = torch.abs(logits)
+    
+    # Identify correct class and apply margin and beta scaling
+    targets = targets_expanded == 1
+    under_confident = logits_confidence < margin
+    enhanced_error = torch.where(targets & under_confident, squared_error * beta, squared_error)
+    
+    # Calculate final MSE loss without softmax
+    mse_loss_value = torch.mean(enhanced_error)
+    
+    return mse_loss_value
+    
+
 
 class LayerNorm(nn.Module):
     """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """

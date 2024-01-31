@@ -6,7 +6,10 @@ GPT-2 is an OpenAI developped model using transformers aimed at NLP tasks. The r
 ```
 pip install torch numpy transformers datasets tiktoken wandb tqdm
 ```
-
+OR
+```
+pip3 install torch numpy transformers datasets tiktoken wandb tqdm
+```
 Dependencies:
 
 - [pytorch](https://pytorch.org) <3
