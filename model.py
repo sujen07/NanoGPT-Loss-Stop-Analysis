@@ -15,23 +15,24 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-# def mse_loss(targets_expanded, logits):
-#     squared_error = (targets_expanded - logits)**2
-#     targets = targets_expanded == 1
-#     squared_error = torch.where(targets, squared_error *100, squared_error)
-#     mse_loss = torch.mean(squared_error)
-#     return mse_loss
-import torch
+def mse_loss(targets_expanded, logits):
+    squared_error = (targets_expanded - logits)**2
+    targets = targets_expanded == 1
+    squared_error = torch.where(targets, squared_error * 65, squared_error)
+    mse_loss = torch.mean(squared_error)
+    return mse_loss
+#(32,256,65)
 
+"""
 def mse_loss(targets_expanded, logits, beta=100, margin=0.1):
-    """
+    
     A modified MSE loss function that works directly with logits and does not use softmax.
     
     - targets_expanded: One-hot encoded targets
     - logits: Raw logits from the model
     - beta: Scaling factor for penalizing errors on the correct class
     - margin: A threshold used to determine underconfident predictions
-    """
+    
     # Calculate squared error directly from logits
     squared_error = (targets_expanded - logits) ** 2
     
@@ -47,7 +48,7 @@ def mse_loss(targets_expanded, logits, beta=100, margin=0.1):
     mse_loss_value = torch.mean(enhanced_error)
     
     return mse_loss_value
-    
+"""   
 
 
 class LayerNorm(nn.Module):
@@ -220,7 +221,7 @@ class GPT(nn.Module):
         if targets is not None:
             # if we are given some desired targets also calculate the loss
             logits = self.lm_head(x)
-            #probabilities = F.softmax(logits, dim=-1)
+            probabilities = F.softmax(logits, dim=-1)
             targets_expanded = F.one_hot(targets.to(torch.int64), num_classes=self.config.vocab_size).to(torch.float32)
             #print(probabilities)
             #print(targets.shape)
@@ -230,7 +231,7 @@ class GPT(nn.Module):
             #print(mse_loss)
             cross_entropy_loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
             if self.loss == 'mse':
-                loss = mse_loss_value
+                loss = mse_loss_value + cross_entropy_loss
             else:
                 loss = cross_entropy_loss
               
@@ -238,7 +239,6 @@ class GPT(nn.Module):
             # inference-time mini-optimization: only forward the lm_head on the very last position
             logits = self.lm_head(x[:, [-1], :]) # note: using list [-1] to preserve the time dim
             loss = None
-
         return logits, loss
 
     def crop_block_size(self, block_size):

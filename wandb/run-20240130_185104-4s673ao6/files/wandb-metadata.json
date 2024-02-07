@@ -1,0 +1,258 @@
+{
+    "os": "Linux-3.10.0-1160.105.1.el7.x86_64-x86_64-with-glibc2.31",
+    "python": "3.9.5",
+    "heartbeatAt": "2024-01-31T02:51:05.274648",
+    "startedAt": "2024-01-31T02:51:04.752725",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "config/train_shakespeare_char.py",
+        "--compile=False",
+        "--batch_size=32",
+        "--eval_interval=50",
+        "--loss_func=mse",
+        "--wandb_log=True",
+        "--wandb_project=mse",
+        "--eval_iters=2000",
+        "--max_iters=50000"
+    ],
+    "state": "running",
+    "program": "/home/skancherla/private/NanoGPT-Loss-Stop-Analysis/train.py",
+    "codePathLocal": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/BigSuj/NanoGPT-Loss-Stop-Analysis.git",
+        "commit": "1fd80410593c3174047eec860e1f6dc0cce61104"
+    },
+    "email": "sujenk@gmail.com",
+    "root": "/home/skancherla/private/NanoGPT-Loss-Stop-Analysis",
+    "host": "skancherla-11639",
+    "username": "skancherla",
+    "executable": "/opt/conda/bin/python3",
+    "cpu_count": 20,
+    "cpu_count_logical": 40,
+    "cpu_freq": {
+        "current": 1230.5976,
+        "min": 1200.0,
+        "max": 3100.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1200.17,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1483.496,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1396.215,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1283.422,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1284.497,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.17,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1239.916,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.305,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.17,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1260.461,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1205.944,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.573,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.573,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1199.902,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.036,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.439,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.439,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.439,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.17,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.305,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1226.22,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1390.576,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1227.832,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.17,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1220.446,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1213.061,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1285.571,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1269.189,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1264.758,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1249.584,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1209.301,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1206.079,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1206.884,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1242.468,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.439,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1199.902,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1235.888,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.305,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.036,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1215.209,
+            "min": 1200.0,
+            "max": 3100.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 784.2262649536133,
+            "used": 129.06059646606445
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX 1080 Ti",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "memory_total": 11811160064
+        }
+    ],
+    "memory": {
+        "total": 377.6196060180664
+    }
+}
