@@ -80,9 +80,9 @@ exec(open('configurator.py').read()) # overrides from command line or config fil
 config = {k: globals()[k] for k in config_keys} # will be useful for logging
 # -----------------------------------------------------------------------------
 
-#if loss_func == 'mse':
-#    wandb_run_name += 'mse' + str(time.time())
-#    ckpt_name = 'ckpt_mse_loss.pt'
+#if loss_func == 'squentropy':
+#    wandb_run_name += 'squentropy' + str(time.time())
+#    ckpt_name = 'ckpt_squentropy_loss.pt'
     
 
 # various inits, derived attributes, I/O setup

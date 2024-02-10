@@ -14,4 +14,3 @@ for lr, dropout, n_layer in params:
     #print(command)
     os.system(command)
     counter += 1
-    break

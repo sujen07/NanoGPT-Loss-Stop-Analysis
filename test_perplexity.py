@@ -28,7 +28,7 @@ compile = False # use PyTorch 2.0 to compile the model to be faster
 exec(open('configurator.py').read()) # overrides from command line or config file
 # -----------------------------------------------------------------------------
 ckpt_name = 'ckpt.pt'
-if loss_func == 'mse':
+if loss_func == 'squentropy':
     ckpt_name = 'ckpt_mse_loss.pt'
 
 

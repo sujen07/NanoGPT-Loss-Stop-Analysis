@@ -25,7 +25,7 @@ exec(open('configurator.py').read()) # overrides from command line or config fil
 # -----------------------------------------------------------------------------
 
 ckpt_name = 'ckpt.pt'
-if loss_func == 'mse':
+if loss_func == 'squentropy':
     ckpt_name = 'ckpt_mse_loss.pt'
 
 torch.manual_seed(seed)

@@ -230,7 +230,7 @@ class GPT(nn.Module):
             mse_loss_value = mse_loss(targets_expanded, logits)
             #print(mse_loss)
             cross_entropy_loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
-            if self.loss == 'mse':
+            if self.loss == 'squentropy':
                 loss = mse_loss_value + cross_entropy_loss
             else:
                 loss = cross_entropy_loss
