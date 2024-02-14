@@ -64,7 +64,7 @@ All Command Line arguments:
 --init_from='resume' # whether or not to "resume" training from previous checkpoint of model
 ```
 
-To train with MSE loss function, use --loss_func="mse" command above.
+To train with Squentropy loss function, use --loss_func="squentropy" command above.
 
 ## Evaluation
 
@@ -72,7 +72,7 @@ The output of training the model will show the train and val loss, for each iter
 
 To get the perplexity of the model trained run:
 ```
-python3 test_perplexity.py --loss_func="mse"
+python3 test_perplexity.py --loss_func="squentropy"
 ```
 
 ## Sampling Text
@@ -82,6 +82,6 @@ To sample text from the model after training it:
 python3 sample.py --start="Once upon a time," --num_samples=5 --max_new_tokens=100
 ```
 
-To sample from a model that was trained using mse loss, use --loss_func="mse" on the command above
+To sample from a model that was trained using squentropy loss, use --loss_func="squentropy" on the command above
 
 
