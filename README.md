@@ -1,5 +1,5 @@
 # NanoGPT-Loss-Stop-Analysis
-GPT-2 is an OpenAI developped model using transformers aimed at NLP tasks. The repository will use the NanoGPT implementation, on the Tiny Stories dataset and analyze how a variety of different loss functions and early stopping techniques can improve the performance of the model.
+GPT-2 is an OpenAI developed model using transformers aimed at NLP tasks. The repository will use the NanoGPT implementation, on the Tiny Stories dataset and analyze how a variety of different loss functions and early stopping techniques can improve the performance of the model.
 
 ## install
 
